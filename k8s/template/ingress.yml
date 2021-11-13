@@ -19,7 +19,7 @@ spec:
     - host: $DOMAIN
       http:
         paths:
-          - path: /
+          - path: /api/discord/notification
             pathType: Prefix
             backend:
               service:
