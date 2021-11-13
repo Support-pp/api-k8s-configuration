@@ -11,6 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Build docker image & push to k8net registry
+        uses: mr-smithers-excellent/docker-build-push@v5.6
+        with:
+          image: supportpp/spp-api-gateway
+          dockerfile: Dockerfile
+          tags: latest
+          registry: ${{ secrets.DOCKER_REGISTRY_HOST }}
+          username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+
       - name: Prepare and build kuberntes config
         run: ./scripts/k8s-deploy.sh
       - name: Deploy to kuberntes (dev01)

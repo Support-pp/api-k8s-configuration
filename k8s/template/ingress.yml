@@ -26,3 +26,10 @@ spec:
                 name: spp-discord-bot
                 port:
                   name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: $APP
+                port:
+                  name: http
