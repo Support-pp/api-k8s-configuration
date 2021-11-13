@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: $APP
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "authorization,content-type"
+    nginx.ingress.kubernetes.io/cors-exposed-headers: "authorization,content-type"
+spec:
+  tls:
+    - hosts:
+        - $DOMAIN
+      secretName: $APP-tls
+  rules:
+    - host: $DOMAIN
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: spp-discord-bot
+                port:
+                  name: http
