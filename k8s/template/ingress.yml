@@ -26,6 +26,13 @@ spec:
                 name: spp-discord-bot
                 port:
                   name: http
+          - path: /api/dev/whatsapp
+            pathType: Prefix
+            backend:
+              service:
+                name: api-spp-dev
+                port:
+                  name: http
           - path: /
             pathType: Prefix
             backend:
