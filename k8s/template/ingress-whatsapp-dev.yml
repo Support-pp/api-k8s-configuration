@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: $APP
+  name: $APP-whatsapp-dev
   namespace: $NAMESPACE
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -13,23 +13,16 @@ metadata:
 spec:
   tls:
     - hosts:
-        - $DOMAIN
-      secretName: $APP-tls
+        - api-whatsapp-dev.support-pp.de
+      secretName: $APP-whatsapp-dev-tls
   rules:
-    - host: $DOMAIN
+    - host: api-whatsapp-dev.support-pp.de
       http:
         paths:
-          - path: /api/discord/notification
-            pathType: Prefix
-            backend:
-              service:
-                name: spp-discord-bot
-                port:
-                  name: http
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: $APP
+                name: api-spp-dev
                 port:
                   name: http
