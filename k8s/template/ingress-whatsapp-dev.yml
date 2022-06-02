@@ -9,6 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/cors-allow-headers: "authorization,content-type"
+    nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS, DELETE, PATCH
     nginx.ingress.kubernetes.io/cors-exposed-headers: "authorization,content-type"
 spec:
   tls:
